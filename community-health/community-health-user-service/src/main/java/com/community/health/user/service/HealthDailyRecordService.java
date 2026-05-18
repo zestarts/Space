@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface HealthDailyRecordService {
-    HealthDailyRecord saveOrUpdate(Long userId, HealthDailyRecord record);
-    HealthDailyRecord getByDate(Long userId, LocalDate date);
-    List<HealthDailyRecord> getRecent(Long userId, int days);
+    HealthDailyRecord saveOrUpdate(String username, HealthDailyRecord record);
+    HealthDailyRecord getByDate(String username, LocalDate date);
+    List<HealthDailyRecord> getRecent(String username, int days);
 }

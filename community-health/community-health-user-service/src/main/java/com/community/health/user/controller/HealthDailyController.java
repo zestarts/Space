@@ -19,28 +19,16 @@ public class HealthDailyController {
 
     @PostMapping
     public Result<HealthDailyRecord> saveOrUpdate(Authentication auth, @RequestBody HealthDailyRecord record) {
-        Long userId = Long.parseLong(auth.getName());
-        return Result.ok(service.saveOrUpdate(userId, record));
+        return Result.ok(service.saveOrUpdate(auth.getName(), record));
     }
 
     @GetMapping("/today")
     public Result<HealthDailyRecord> today(Authentication auth) {
-        Long userId = Long.parseLong(auth.getName());
-        return Result.ok(service.getByDate(userId, LocalDate.now()));
+        return Result.ok(service.getByDate(auth.getName(), LocalDate.now()));
     }
 
     @GetMapping("/recent")
     public Result<List<HealthDailyRecord>> recent(Authentication auth, @RequestParam(defaultValue = "7") int days) {
-        Long userId = Long.parseLong(auth.getName());
-        return Result.ok(service.getRecent(userId, days));
-    }
-
-    @GetMapping("/history")
-    public Result<Map<String, Object>> history(Authentication auth,
-                                                @RequestParam(defaultValue = "2024-01-01") String start,
-                                                @RequestParam(defaultValue = "2099-12-31") String end) {
-        Long userId = Long.parseLong(auth.getName());
-        List<HealthDailyRecord> records = service.getRecent(userId, 365);
-        return Result.ok(Map.of("records", records));
+        return Result.ok(service.getRecent(auth.getName(), days));
     }
 }
