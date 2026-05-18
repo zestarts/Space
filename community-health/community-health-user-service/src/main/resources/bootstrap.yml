@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: community-health-user-service
+  cloud:
+    nacos:
+      discovery:
+        enabled: false
+        server-addr: 127.0.0.1:8848
+        namespace: ${NACOS_NAMESPACE:community-health-dev}
+      config:
+        enabled: false
+        server-addr: 127.0.0.1:8848
+        namespace: ${NACOS_NAMESPACE:community-health-dev}
+        file-extension: yaml
+        shared-configs:
+          - data-id: community-health-common.yaml
+            group: DEFAULT_GROUP
+            refresh: true
