@@ -4,9 +4,11 @@ spring:
   cloud:
     nacos:
       discovery:
+        enabled: false
         server-addr: 127.0.0.1:8848
         namespace: ${NACOS_NAMESPACE:community-health-dev}
       config:
+        enabled: false
         server-addr: 127.0.0.1:8848
         namespace: ${NACOS_NAMESPACE:community-health-dev}
         file-extension: yaml

@@ -22,6 +22,8 @@ public class HealthProfile {
     private Integer heartRate;
     private BigDecimal height;
     private BigDecimal weight;
+    @Version
+    private Integer version;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
     @TableField(fill = FieldFill.INSERT_UPDATE)

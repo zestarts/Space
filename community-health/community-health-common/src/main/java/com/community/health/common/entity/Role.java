@@ -12,6 +12,8 @@ public class Role {
     private String roleCode;
     private String roleName;
     private String description;
+    @Version
+    private Integer version;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 }

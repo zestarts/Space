@@ -16,6 +16,8 @@ public class User {
     private String roleCode;
     private Integer status;
     private String avatar;
+    @Version
+    private Integer version;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
     @TableField(fill = FieldFill.INSERT_UPDATE)

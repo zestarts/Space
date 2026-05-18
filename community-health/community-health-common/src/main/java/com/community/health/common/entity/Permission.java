@@ -12,4 +12,6 @@ public class Permission {
     private String action;
     private String permissionCode;
     private String description;
+    @Version
+    private Integer version;
 }
