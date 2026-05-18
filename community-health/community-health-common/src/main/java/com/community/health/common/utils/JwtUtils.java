@@ -3,7 +3,8 @@ package com.community.health.common.utils;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
-import java.security.Key;
+
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
 public class JwtUtils {
     private static final String SECRET = "community-health-system-jwt-secret-key-2026-must-be-at-least-256-bits";
     private static final long EXPIRE = 7 * 24 * 60 * 60 * 1000L;
-    private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
+    private final SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
     public String generateToken(Long userId, String username, String roleCode) {
         Map<String, Object> claims = new HashMap<>();
@@ -20,19 +21,19 @@ public class JwtUtils {
         claims.put("username", username);
         claims.put("roleCode", roleCode);
         return Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
-                .signWith(key, SignatureAlgorithm.HS256)
+                .claims(claims)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + EXPIRE))
+                .signWith(key)
                 .compact();
     }
 
     public Claims parseToken(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
+        return Jwts.parser()
+                .verifyWith(key)
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     public boolean validateToken(String token) {
