@@ -21,6 +21,7 @@
             <el-dropdown-item v-if="isAdmin" command="adminUsers">用户管理</el-dropdown-item>
             <el-dropdown-item command="profile">个人中心</el-dropdown-item>
             <el-dropdown-item command="health">健康档案</el-dropdown-item>
+            <el-dropdown-item command="healthDaily">今日健康</el-dropdown-item>
             <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -56,6 +57,8 @@ function handleCommand(cmd: string) {
     router.push('/login')
   } else if (cmd === 'adminUsers') {
     router.push('/admin/users')
+  } else if (cmd === 'healthDaily') {
+    router.push('/health/daily')
   } else {
     router.push(`/${cmd}`)
   }
