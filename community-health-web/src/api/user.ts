@@ -31,3 +31,15 @@ export function listUsers(params: { page: number; size: number; keyword?: string
 export function updateUserStatus(id: number, status: number) {
   return request.put(`/api/admin/users/${id}/status`, { status })
 }
+
+export function getTodayRecord() {
+  return request.get('/api/user/health/daily/today')
+}
+
+export function saveDailyRecord(data: any) {
+  return request.post('/api/user/health/daily', data)
+}
+
+export function getDailyHistory(params?: { days?: number }) {
+  return request.get('/api/user/health/daily/recent', { params })
+}

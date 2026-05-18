@@ -37,6 +37,12 @@ const routes: RouteRecordRaw[] = [
         meta: { title: '健康档案' }
       },
       {
+        path: 'health/daily',
+        name: 'HealthDaily',
+        component: () => import('@/views/HealthDaily.vue'),
+        meta: { title: '今日健康' }
+      },
+      {
         path: 'admin/users',
         name: 'AdminUsers',
         component: () => import('@/views/admin/UserList.vue'),
