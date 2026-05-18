@@ -23,3 +23,11 @@ export function getHealthProfile() {
 export function updateHealthProfile(data: any) {
   return request.put('/api/user/health', data)
 }
+
+export function listUsers(params: { page: number; size: number; keyword?: string }) {
+  return request.get('/api/admin/users', { params })
+}
+
+export function updateUserStatus(id: number, status: number) {
+  return request.put(`/api/admin/users/${id}/status`, { status })
+}
